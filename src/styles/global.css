@@ -24,3 +24,8 @@ body {
   min-height: 100vh;
   background-color: var(--white-100);
 }
+
+.container {
+  margin: 0 auto;
+  padding: 118px;
+}

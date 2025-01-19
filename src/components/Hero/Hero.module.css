@@ -1,0 +1,19 @@
+.search_box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 403px;
+  height: 56px;
+  border: 1px solid var(--gray-100);
+  border-radius: 30px;
+  overflow: hidden;
+  padding-left: 20px;
+  padding-right: 3px;
+}
+
+.search_box button {
+  border: none;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+}
