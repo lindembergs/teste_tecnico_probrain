@@ -6,8 +6,8 @@ export const Hero = () => {
   return (
     <>
       <section className={styles.section}>
-        <div className={styles.search_box}>
-          <Input />
+        <div className={styles.search_filter_box}>
+          <Input placeHolder="Pesquise um pokemon" />
           <button>
             <img src={lupa} alt="Lupa do input de pesquisa" />
           </button>

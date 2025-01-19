@@ -1,10 +1,9 @@
 import styles from "./Input.module.css";
-export const Input = () => {
+interface InputProps {
+  placeHolder?: string;
+}
+export const Input = ({ placeHolder }: InputProps) => {
   return (
-    <input
-      className={styles.input}
-      type="text"
-      placeholder="Pesquise por um pokemon"
-    />
+    <input className={styles.input} type="text" placeholder={placeHolder} />
   );
 };

@@ -2,9 +2,10 @@
   padding: 118px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 100%;
 }
-.search_box {
+.search_filter_box {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -17,7 +18,7 @@
   padding-right: 3px;
 }
 
-.search_box button {
+.search_filter_box button {
   border: none;
   width: 42px;
   height: 42px;

@@ -1,5 +1,18 @@
 .container {
   display: flex;
   justify-content: space-between;
-  margin: 20px 0;
+  align-items: center;
+}
+
+.filter_box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.filter_box input {
+  width: 589px;
+  height: 41px;
+  border-radius: 6px;
+  background-color: var(--gray-300);
 }
