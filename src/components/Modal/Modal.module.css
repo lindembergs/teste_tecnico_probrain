@@ -49,6 +49,7 @@
   background-color: #fdfdfd;
   display: flex;
   flex-direction: column;
+  gap: 50px;
   align-items: center;
   padding: 43.75px 50.56px 81.93px 80.39px;
 }
@@ -66,6 +67,12 @@
   align-items: center;
   margin-top: 20px;
   gap: 20px;
+}
+.middle_box span:first-child {
+  background-color: var(--gray-50);
+}
+.middle_box span:last-child {
+  background-color: var(--gray-100);
 }
 
 .info_boxes {
@@ -122,4 +129,20 @@
   color: var(--gray-100);
   line-height: 16.16px;
   color: #666666;
+}
+.article_box {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-top: 55px;
+}
+.article_box strong {
+  text-align: center;
+}
+
+.footer {
+  height: 47.24px;
+  width: 100%;
+  background-color: var(--gray-100);
+  border-radius: 7.46px;
 }

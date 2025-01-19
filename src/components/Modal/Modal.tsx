@@ -16,8 +16,8 @@ export const Modal = () => {
           <main className={styles.main}>
             <img className={styles.pokemon_img} src={img} alt="" />
             <div className={styles.middle_box}>
-              <span>1</span>
-              <span>2</span>
+              <span>Lorem ipsum</span>
+              <span>dolor asimet</span>
             </div>
             <div className={styles.info_boxes}>
               <div className={styles.info_box}>
@@ -41,6 +41,16 @@ export const Modal = () => {
                 </strong>
                 <span>lorem ipsum</span>
               </div>
+            </div>
+            <div className={styles.article_box}>
+              <article>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat
+              </article>
+              <strong>Lorem ipsum</strong>
+              <footer className={styles.footer}></footer>
             </div>
           </main>
         </div>
