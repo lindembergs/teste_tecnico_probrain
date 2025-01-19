@@ -33,6 +33,7 @@
 
 .total_pokemons_box {
   margin-left: 118px;
+  margin-bottom: 55px;
   display: flex;
   gap: 5px;
   align-items: center;
@@ -41,5 +42,6 @@
 .total_pokemons_box span {
   font-size: 18px;
   color: var(--gray-100);
-  font-weight: 500;
+  font-weight: 600;
+  line-height: 27px;
 }
