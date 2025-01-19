@@ -1,4 +1,5 @@
 import lupa from "../../assets/icons/lupa.svg";
+import pokeball from "../../assets/icons/pokeball.svg";
 import styles from "./Hero.module.css";
 import { Input } from "../Input/Input";
 import { Filter } from "../Filter/Filter";
@@ -14,6 +15,10 @@ export const Hero = () => {
         </div>
         <Filter></Filter>
       </section>
+      <div className={styles.total_pokemons_box}>
+        <img src={pokeball} alt="Imagem da pokebola" />
+        <span>Total: 150 Pokémons</span>
+      </div>
     </>
   );
 };
