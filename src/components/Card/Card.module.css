@@ -11,15 +11,23 @@
   object-fit: cover;
 }
 
-.name_box {
+.name_box,
+.type_box {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding-inline: 28px;
-  padding-block: 19px;
+  padding-top: 15px;
 }
 .name_box span {
   font-size: 18px;
   font-weight: 600;
   color: var(--gray-800);
+}
+
+.type_box span {
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 19.5px;
+  color: var(--gray-200);
 }

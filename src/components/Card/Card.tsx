@@ -9,6 +9,10 @@ export const Card = () => {
         <span>Bubasaur</span>
         <img src={typeImg} alt="" />
       </div>
+      <div className={styles.type_box}>
+        <span>Tipo planta</span>
+        <span>Comum</span>
+      </div>
     </div>
   );
 };
