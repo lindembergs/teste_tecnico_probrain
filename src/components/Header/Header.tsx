@@ -1,7 +1,10 @@
+import logo from "../../assets/img/logo.svg";
+import styles from "./header.module.css";
 export const Header = () => {
   return (
-    <header>
-      <h1>Header</h1>
+    <header className={styles.header}>
+      <img src={logo} alt="Logo com o nome Pokémon" />
+      <span>Documentação</span>
     </header>
   );
 };
