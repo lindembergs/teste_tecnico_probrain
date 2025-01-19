@@ -1,14 +1,27 @@
 .header {
+  height: 145px;
   display: flex;
   justify-content: space-between;
-  height: 145px;
-  background-color: #ffffff;
-  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2);
-  margin: 0 auto;
-  display: flex;
   align-items: center;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2);
   padding-inline: 111px;
   padding-top: 34.96px;
   padding-bottom: 47.97px;
   border-bottom: 1px solid #f3f4f6;
+}
+
+.header img {
+  width: 158.32px;
+  height: 64.04px;
+}
+
+.header a {
+  font-size: 1.2rem;
+  line-height: 19.36px;
+  text-decoration: none;
+  color: var(--grey-100);
+}
+
+.header a:hover {
+  text-decoration: underline;
 }

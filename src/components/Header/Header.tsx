@@ -4,7 +4,9 @@ export const Header = () => {
   return (
     <header className={styles.header}>
       <img src={logo} alt="Logo com o nome Pokémon" />
-      <span>Documentação</span>
+      <a href="https://pokemontcg.io/" target="_blank">
+        Documentação
+      </a>
     </header>
   );
 };
