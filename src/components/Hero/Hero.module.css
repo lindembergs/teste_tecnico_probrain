@@ -1,3 +1,9 @@
+.section {
+  padding: 118px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
 .search_box {
   display: flex;
   justify-content: space-between;
