@@ -1,56 +1,50 @@
 import styles from "./Modal.module.css";
 import xIcon from "../../assets/icons/x_close.svg";
-import img from "../../assets/img/temp_img.svg";
-import pokeball from "../../assets/icons/pokeball.svg";
-export const Modal = () => {
+
+interface ModalProps {
+  pokemon: {
+    name: string;
+    images: { large: string };
+    types?: string[];
+    rarity: string;
+    flavorText?: string;
+    hp?: string;
+  };
+  onClose: () => void;
+}
+
+export const Modal = ({ pokemon, onClose }: ModalProps) => {
+  if (!pokemon) {
+    return null;
+  }
+
   return (
-    <div>
+    <div className={styles.overlay}>
       <section className={styles.container}>
         <div className={styles.content}>
           <header className={styles.header}>
-            <span>Pokemon Name</span>
-            <button>
+            <span>{pokemon.name || "Desconhecido"}</span>
+            <button onClick={onClose}>
               <img src={xIcon} alt="Botão de fechar" />
             </button>
           </header>
           <main className={styles.main}>
-            <img className={styles.pokemon_img} src={img} alt="" />
-            <div className={styles.middle_box}>
-              <span>Lorem ipsum</span>
-              <span>dolor asimet</span>
-            </div>
-            <div className={styles.info_boxes}>
-              <div className={styles.info_box}>
-                <strong>
-                  <img className={styles.img} src={pokeball} alt="" />
-                  info
-                </strong>
-                <span>lorem ipsum</span>
-              </div>
-              <div className={styles.info_box_with_border}>
-                <strong>
-                  <img className={styles.img} src={pokeball} alt="" />
-                  info
-                </strong>
-                <span>lorem ipsum</span>
-              </div>
-              <div className={styles.info_box}>
-                <strong>
-                  <img className={styles.img} src={pokeball} alt="" />
-                  info
-                </strong>
-                <span>lorem ipsum</span>
-              </div>
-            </div>
-            <div className={styles.article_box}>
-              <article>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat
-              </article>
-              <strong>Lorem ipsum</strong>
-              <footer className={styles.footer}></footer>
+            <img
+              className={styles.pokemon_img}
+              src={pokemon.images.large}
+              alt={`Imagem de ${pokemon.name}`}
+            />
+            <div className={styles.info}>
+              <span>
+                <strong>Tipo:</strong> {pokemon.types?.join(", ") || "Sem tipo"}
+              </span>
+              <span>
+                <strong>Raridade:</strong> {pokemon.rarity || "Sem raridade"}
+              </span>
+              <span>
+                <strong>HP:</strong> {pokemon.hp || "Sem HP"}
+              </span>
+              <p>{pokemon.flavorText || "Sem descrição disponível."}</p>
             </div>
           </main>
         </div>

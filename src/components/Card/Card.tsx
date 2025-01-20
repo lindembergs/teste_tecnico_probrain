@@ -1,12 +1,16 @@
+// Card.tsx
+import { useEffect, useState } from "react";
 import styles from "./Card.module.css";
 import typeImg from "../../assets/icons/type_img.svg";
-import { useEffect, useState } from "react";
 import { api } from "../../services/api";
+import { Modal } from "../Modal/Modal";
+
 interface IAbility {
   name: string;
   text: string;
   type: string;
 }
+
 interface IAttack {
   cost: string[];
   name: string;
@@ -14,14 +18,17 @@ interface IAttack {
   damage: string;
   convertedEnergyCost: number;
 }
+
 interface IResistance {
   type: string;
   value: string;
 }
+
 interface IWeakness {
   type: string;
   value: string;
 }
+
 interface ISet {
   id: string;
   name: string;
@@ -32,10 +39,6 @@ interface ISet {
   releaseDate: string;
   updatedAt: string;
 }
-// interface IQuery {
-//   name: string;
-//   value: string | number;
-// }
 
 interface Pokemon {
   id: string;
@@ -44,7 +47,7 @@ interface Pokemon {
   subtypes: string[];
   hp?: string;
   types?: string[];
-  evolesFrom?: string;
+  evolvesFrom?: string;
   evolvesTo?: string[];
   rules?: string[];
   abilities?: IAbility[];
@@ -64,39 +67,80 @@ interface Pokemon {
     large: string;
   };
 }
+
 export const Card = () => {
   const [data, setData] = useState<Pokemon[]>([]);
+  const [selectedPokemon, setSelectedPokemon] = useState<Pokemon | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   const getData = async () => {
     try {
+      setIsLoading(true);
+      setError(null);
       const response = await api.get("");
-      const data = response.data.data;
-      setData(data);
-      console.log(data);
+      const pokemons: Pokemon[] = response.data.data;
+      setData(pokemons);
     } catch (error) {
-      console.error(error);
+      console.error("Erro ao buscar os dados:", error);
+      setError("Erro ao carregar os Pokémon. Tente novamente mais tarde.");
+    } finally {
+      setIsLoading(false);
     }
+  };
+
+  const openModal = (pokemon: Pokemon) => {
+    setSelectedPokemon(pokemon);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setSelectedPokemon(null);
+    setIsModalOpen(false);
   };
 
   useEffect(() => {
     getData();
   }, []);
 
+  if (isLoading) {
+    return <div className={styles.loading}>Carregando...</div>;
+  }
+
+  if (error) {
+    return <div className={styles.error}>{error}</div>;
+  }
+
   return (
     <>
-      {data.map((pokemon) => (
-        <div key={pokemon.id} className={styles.card}>
-          <img src={pokemon.images.large} alt="Imagem do pokemon no card" />
-          <div className={styles.name_box}>
-            <span>{pokemon.name || "Desconhecido"}</span>
-            <img src={typeImg} alt="Tipo" />
+      <div className={styles.cardsContainer}>
+        {data.map((pokemon) => (
+          <div
+            key={pokemon.id}
+            className={styles.card}
+            onClick={() => openModal(pokemon)}
+          >
+            <img
+              src={pokemon.images.large}
+              alt={`Imagem do Pokémon ${pokemon.name}`}
+              className={styles.cardImage}
+            />
+            <div className={styles.name_box}>
+              <span>{pokemon.name || "Desconhecido"}</span>
+              <img src={typeImg} alt="Tipo do Pokémon" />
+            </div>
+            <div className={styles.type_box}>
+              <span>{pokemon.types?.join(", ") || "Sem tipo"}</span>
+              <span>{pokemon.rarity || "Sem raridade"}</span>
+            </div>
           </div>
-          <div className={styles.type_box}>
-            <span>{pokemon.types || "Sem tipo"}</span>
-            <span>{pokemon.rarity || "Sem raridade"}</span>
-          </div>
-        </div>
-      ))}
+        ))}
+      </div>
+
+      {isModalOpen && selectedPokemon && (
+        <Modal pokemon={selectedPokemon} onClose={closeModal} />
+      )}
     </>
   );
 };
