@@ -1,10 +1,10 @@
-// Card.tsx
 import { useEffect, useState } from "react";
 import styles from "./Card.module.css";
 import typeImg from "../../assets/icons/type_img.svg";
 import { api } from "../../services/api";
 import { Modal } from "../Modal/Modal";
 
+// Definição das interfaces
 interface IAbility {
   name: string;
   text: string;
@@ -75,6 +75,9 @@ export const Card = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(28);
+
   const getData = async () => {
     try {
       setIsLoading(true);
@@ -90,6 +93,10 @@ export const Card = () => {
     }
   };
 
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
+
   const openModal = (pokemon: Pokemon) => {
     setSelectedPokemon(pokemon);
     setIsModalOpen(true);
@@ -104,6 +111,18 @@ export const Card = () => {
     getData();
   }, []);
 
+  const nextPage = () => {
+    if (currentPage < Math.ceil(data.length / itemsPerPage)) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const prevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
   if (isLoading) {
     return <div className={styles.loading}>Carregando...</div>;
   }
@@ -115,7 +134,7 @@ export const Card = () => {
   return (
     <>
       <div className={styles.cardsContainer}>
-        {data.map((pokemon) => (
+        {currentItems.map((pokemon) => (
           <div
             key={pokemon.id}
             className={styles.card}
@@ -141,6 +160,19 @@ export const Card = () => {
       {isModalOpen && selectedPokemon && (
         <Modal pokemon={selectedPokemon} onClose={closeModal} />
       )}
+
+      <div className={styles.pagination}>
+        <button onClick={prevPage} disabled={currentPage === 1}>
+          Anterior
+        </button>
+        <span>{`Página ${currentPage}`}</span>
+        <button
+          onClick={nextPage}
+          disabled={currentPage === Math.ceil(data.length / itemsPerPage)}
+        >
+          Próxima
+        </button>
+      </div>
     </>
   );
 };

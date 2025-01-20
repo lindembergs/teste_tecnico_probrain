@@ -13,11 +13,14 @@ export const Main = () => {
   };
 
   return (
-    <main className={styles.main}>
-      <Card />
-      {isModalOpen && selectedPokemon && (
-        <Modal pokemon={selectedPokemon} onClose={handleCloseModal} />
-      )}
-    </main>
+    <>
+      <main className={styles.main}>
+        <Card />
+        {isModalOpen && selectedPokemon && (
+          <Modal pokemon={selectedPokemon} onClose={handleCloseModal} />
+        )}
+      </main>
+      <footer></footer>
+    </>
   );
 };
