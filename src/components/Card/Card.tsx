@@ -4,7 +4,6 @@ import typeImg from "../../assets/icons/type_img.svg";
 import { api } from "../../services/api";
 import { Modal } from "../Modal/Modal";
 
-// Definição das interfaces
 interface IAbility {
   name: string;
   text: string;
@@ -76,7 +75,10 @@ export const Card = () => {
   const [error, setError] = useState<string | null>(null);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(28);
+  const [itemsPerPage] = useState(24);
+
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [selectedType, setSelectedType] = useState<string>("");
 
   const getData = async () => {
     try {
@@ -95,7 +97,20 @@ export const Card = () => {
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
+
+  const filteredData = data
+    .filter((pokemon) =>
+      pokemon.name.toLowerCase().includes(searchTerm.toLowerCase())
+    )
+    .filter((pokemon) =>
+      selectedType
+        ? pokemon.types?.some(
+            (type) => type.toLowerCase() === selectedType.toLowerCase()
+          )
+        : true
+    );
+
+  const currentItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
 
   const openModal = (pokemon: Pokemon) => {
     setSelectedPokemon(pokemon);
@@ -112,7 +127,7 @@ export const Card = () => {
   }, []);
 
   const nextPage = () => {
-    if (currentPage < Math.ceil(data.length / itemsPerPage)) {
+    if (currentPage < Math.ceil(filteredData.length / itemsPerPage)) {
       setCurrentPage(currentPage + 1);
     }
   };
@@ -133,6 +148,25 @@ export const Card = () => {
 
   return (
     <>
+      <div className={styles.filters}>
+        <input
+          type="text"
+          placeholder="Pesquisar por nome"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+        <select
+          value={selectedType}
+          onChange={(e) => setSelectedType(e.target.value)}
+        >
+          <option value="">Todos os tipos</option>
+          <option value="Fire">Fogo</option>
+          <option value="Water">Água</option>
+          <option value="Grass">Grama</option>
+          <option value="Lightning">Elétrico</option>
+        </select>
+      </div>
+
       <div className={styles.cardsContainer}>
         {currentItems.map((pokemon) => (
           <div
@@ -168,7 +202,9 @@ export const Card = () => {
         <span>{`Página ${currentPage}`}</span>
         <button
           onClick={nextPage}
-          disabled={currentPage === Math.ceil(data.length / itemsPerPage)}
+          disabled={
+            currentPage === Math.ceil(filteredData.length / itemsPerPage)
+          }
         >
           Próxima
         </button>
