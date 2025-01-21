@@ -175,7 +175,7 @@ export const Card = () => {
             onClick={() => openModal(pokemon)}
           >
             <img
-              src={pokemon.images.large}
+              src={pokemon.images.small}
               alt={`Imagem do Pokémon ${pokemon.name}`}
               className={styles.cardImage}
             />
@@ -196,6 +196,7 @@ export const Card = () => {
       )}
 
       <div className={styles.pagination}>
+        <span>  </span>
         <button onClick={prevPage} disabled={currentPage === 1}>
           Anterior
         </button>
