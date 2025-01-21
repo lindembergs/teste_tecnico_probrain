@@ -1,52 +1,29 @@
-.card {
-  height: 450px;
-  width: 280px;
-  border: 1px solid var(--gray-100);
-  border-radius: 8px;
-  margin-bottom: 55px;
-  cursor: pointer;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  flex-shrink: 0;
-}
-.card img:first-child {
-  width: 100%;
-  height: 70%;
-  object-fit: cover;
-}
-
-.name_box,
-.type_box {
+.container {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-inline: 28px;
-  padding-top: 15px;
-}
-.name_box span {
-  font-size: 18px;
-  font-weight: 600;
-  color: var(--gray-800);
-}
-
-.type_box span {
-  font-size: 13px;
-  font-weight: 500;
-  line-height: 19.5px;
-  color: var(--gray-200);
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .cardsContainer {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 2rem;
   width: 100%;
-  justify-content: center;
 }
 
-.pagination {
+.loading,
+.error {
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.2rem;
+}
+
+.paginationContainer {
   display: flex;
   justify-content: center;
-  gap: 10px;
-  margin-block: 20px;
+  padding: 1rem 0;
 }
