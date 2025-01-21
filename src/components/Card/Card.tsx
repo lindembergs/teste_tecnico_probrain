@@ -3,6 +3,8 @@ import styles from "./Card.module.css";
 import typeImg from "../../assets/icons/type_img.svg";
 import { api } from "../../services/api";
 import { Modal } from "../Modal/Modal";
+import { Pagination } from "@mui/material";
+import { styled } from "@mui/system";
 
 interface IAbility {
   name: string;
@@ -67,6 +69,30 @@ interface Pokemon {
   };
 }
 
+const CustomPagination = styled(Pagination)(({ theme }) => ({
+  "& .MuiPaginationItem-root": {
+    fontSize: "1rem",
+    color: theme.palette.text.primary,
+    width: "40px",
+    height: "40px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: "4px",
+  },
+  "& .Mui-selected": {
+    backgroundColor: "#d3d3d3",
+    color: theme.palette.text.primary,
+    fontWeight: "bold",
+    "&:hover": {
+      backgroundColor: "#c0c0c0",
+    },
+  },
+  "& .MuiPaginationItem-previousNext": {
+    fontWeight: "normal",
+  },
+}));
+
 export const Card = () => {
   const [data, setData] = useState<Pokemon[]>([]);
   const [selectedPokemon, setSelectedPokemon] = useState<Pokemon | null>(null);
@@ -126,18 +152,6 @@ export const Card = () => {
     getData();
   }, []);
 
-  const nextPage = () => {
-    if (currentPage < Math.ceil(filteredData.length / itemsPerPage)) {
-      setCurrentPage(currentPage + 1);
-    }
-  };
-
-  const prevPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
-  };
-
   if (isLoading) {
     return <div className={styles.loading}>Carregando...</div>;
   }
@@ -195,21 +209,15 @@ export const Card = () => {
         <Modal pokemon={selectedPokemon} onClose={closeModal} />
       )}
 
-      <div className={styles.pagination}>
-        <span>  </span>
-        <button onClick={prevPage} disabled={currentPage === 1}>
-          Anterior
-        </button>
-        <span>{`Página ${currentPage}`}</span>
-        <button
-          onClick={nextPage}
-          disabled={
-            currentPage === Math.ceil(filteredData.length / itemsPerPage)
-          }
-        >
-          Próxima
-        </button>
-      </div>
+      <CustomPagination
+        count={Math.ceil(filteredData.length / itemsPerPage)}
+        page={currentPage}
+        onChange={(_, value) => setCurrentPage(value)}
+        siblingCount={1}
+        boundaryCount={1}
+        showFirstButton
+        showLastButton
+      />
     </>
   );
 };
