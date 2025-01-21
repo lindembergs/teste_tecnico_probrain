@@ -1,8 +1,7 @@
 import { PokemonFiltersProps } from "../../types/pokemon";
 import styles from "./PokemonFilters.module.css";
-// import searchIcon from "../../assets/icons/search.svg";
+import FilterListIcon from "@mui/icons-material/FilterList";
 
-import filterIcon from "../../assets/icons/filter.svg";
 import SearchIcon from "@mui/icons-material/Search";
 export const PokemonFilters = ({
   searchTerm,
@@ -23,7 +22,7 @@ export const PokemonFilters = ({
       </button>
     </div>
     <div className={styles.filter_box}>
-      <img src={filterIcon} alt="icone da sessão de filtro" />
+      <FilterListIcon style={{ fontSize: "40px", color: "#d4d7de" }} />
       <strong>Filtrar por:</strong>
       <select
         value={selectedType}
