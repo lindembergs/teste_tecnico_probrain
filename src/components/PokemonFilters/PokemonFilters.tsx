@@ -1,11 +1,5 @@
+import { PokemonFiltersProps } from "../../types/pokemon";
 import styles from "./PokemonFilters.module.css";
-
-interface PokemonFiltersProps {
-  searchTerm: string;
-  selectedType: string;
-  onSearchChange: (value: string) => void;
-  onTypeChange: (value: string) => void;
-}
 
 export const PokemonFilters = ({
   searchTerm,

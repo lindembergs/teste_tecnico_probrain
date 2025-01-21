@@ -60,3 +60,10 @@ export interface Pokemon {
     large: string;
   };
 }
+
+export interface PokemonFiltersProps {
+  searchTerm: string;
+  selectedType: string;
+  onSearchChange: (value: string) => void;
+  onTypeChange: (value: string) => void;
+}
