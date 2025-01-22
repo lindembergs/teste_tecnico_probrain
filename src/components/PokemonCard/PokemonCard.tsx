@@ -10,12 +10,12 @@ interface PokemonCardProps {
 export const PokemonCard = ({ pokemon, onClick }: PokemonCardProps) => (
   <div className={styles.card} onClick={() => onClick(pokemon)}>
     <img
-      src={pokemon.images.small}
+      src={pokemon.images.large}
       alt={`Imagem do Pokémon ${pokemon.name}`}
       className={styles.cardImage}
     />
     <div className={styles.name_box}>
-      <span>{pokemon.name || "Desconhecido"}</span>
+      <strong>{pokemon.name || "Desconhecido"}</strong>
       <img src={typeImg} alt="Tipo do Pokémon" />
     </div>
     <div className={styles.type_box}>

@@ -1,3 +1,31 @@
 .card {
-  background-color: rebeccapurple;
+  background-color: var(--white);
+  border: 1px solid var(--gray-100);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.card img:first-child {
+  width: 100%;
+  object-fit: cover;
+}
+
+.name_box,
+.type_box {
+  display: flex;
+  padding-inline: 10px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.name_box strong {
+  font-size: 18px;
+  color: #4d5053;
+  line-height: 27px;
+}
+
+.type_box span {
+  font-size: 14px;
+  color: #7a7d80;
+  line-height: 21px;
 }
