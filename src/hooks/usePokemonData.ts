@@ -12,6 +12,8 @@ export const usePokemonData = () => {
       setIsLoading(true);
       setError(null);
       const response = await api.get("");
+      console.log(response.data.data);
+
       setData(response.data.data);
     } catch (error) {
       console.error("Erro ao buscar os dados:", error);
