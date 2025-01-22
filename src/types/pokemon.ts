@@ -59,6 +59,7 @@ export interface Pokemon {
     small: string;
     large: string;
   };
+  level?: string;
 }
 
 export interface PokemonFiltersProps {
@@ -67,14 +68,19 @@ export interface PokemonFiltersProps {
   onSearchChange: (value: string) => void;
   onTypeChange: (value: string) => void;
 }
+
 export interface ModalProps {
   pokemon: {
     name: string;
+    level?: string;
     images: { large: string };
     types?: string[];
-    rarity: string;
-    flavorText?: string;
+    evolvesFrom?: string;
     hp?: string;
-  };
+    attacks?: IAttack[];
+    weaknesses?: IWeakness[];
+    abilities?: IAbility[];
+    artist?: string;
+  } | null;
   onClose: () => void;
 }
