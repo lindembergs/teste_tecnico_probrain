@@ -7,6 +7,16 @@
   max-width: 1200px;
   margin: 0 auto;
 }
+.totalPokemons {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.totalPokemons strong {
+  font-size: 18px;
+  color: #4d5053;
+  line-height: 27px;
+}
 
 .cardsContainer {
   display: grid;

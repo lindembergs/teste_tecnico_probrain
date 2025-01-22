@@ -7,6 +7,7 @@ import { PokemonFilters } from "../PokemonFilters/PokemonFilters";
 import { usePokemonData } from "../../hooks/usePokemonData";
 import { usePokemonFilters } from "../../hooks/usePokemonFilters";
 import { Pokemon } from "../../types/pokemon";
+import pokeball from "../../assets/icons/pokeball.svg";
 
 const ITEMS_PER_PAGE = 24;
 
@@ -52,6 +53,10 @@ export const Card = () => {
         onSearchChange={setSearchTerm}
         onTypeChange={setSelectedType}
       />
+      <div className={styles.totalPokemons}>
+        <img src={pokeball} alt="" />
+        <strong>total de pokemons: {data.length}</strong>
+      </div>
 
       <div className={styles.cardsContainer}>
         {currentItems.map((pokemon) => (
