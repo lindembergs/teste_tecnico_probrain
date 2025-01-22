@@ -67,3 +67,14 @@ export interface PokemonFiltersProps {
   onSearchChange: (value: string) => void;
   onTypeChange: (value: string) => void;
 }
+export interface ModalProps {
+  pokemon: {
+    name: string;
+    images: { large: string };
+    types?: string[];
+    rarity: string;
+    flavorText?: string;
+    hp?: string;
+  };
+  onClose: () => void;
+}

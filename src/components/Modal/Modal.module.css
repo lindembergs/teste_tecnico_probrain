@@ -18,6 +18,7 @@
   width: 697px;
   max-width: 100%;
   height: 788.17;
+  margin: 194px auto;
 }
 
 .header {
@@ -37,6 +38,7 @@
   color: #2f3133;
 }
 .header button {
+  background-color: transparent;
   border: none;
   cursor: pointer;
   width: 14.22px;
@@ -45,6 +47,7 @@
   top: 10;
   right: 0;
   margin-right: 20px;
+  margin-top: -10px;
 }
 .main {
   background-color: #fdfdfd;
@@ -52,12 +55,12 @@
   flex-direction: column;
   gap: 50px;
   align-items: center;
-  padding: 43.75px 50.56px 81.93px 80.39px;
+  padding: 43.75px 50.56px 81.93px 50.56px;
 }
 
 .main .pokemon_img {
-  width: 195.59px;
-  height: 195.59px;
+  width: 300.59px;
+  height: 350.59px;
   object-fit: cover;
   border: 2px solid var(--gray-100);
   border-radius: 13.13px;
