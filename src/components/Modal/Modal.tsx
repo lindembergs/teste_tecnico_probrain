@@ -72,7 +72,9 @@ export const Modal = ({ pokemon, onClose }: ModalProps) => {
                   <strong>
                     {pokemon.abilities[0].type}: {pokemon.abilities[0].name}
                   </strong>
-                  <p>{pokemon.abilities[0].text}</p>
+                  <article className={styles.article}>
+                    {pokemon.abilities[0].text}
+                  </article>
                 </>
               )}
             </div>
